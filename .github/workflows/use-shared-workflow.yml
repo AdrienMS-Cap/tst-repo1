@@ -1,43 +1,10 @@
-# name: Use Shared Ansible Lint Workflow
-
-# on: [push, pull_request]
-
-# jobs:
-#   call-shared-workflow:
-#     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
-#     with:
-#       repository: ${{ github.repository }}
-
-
-# name: Use Shared Ansible Lint Workflow
-
-# on: [push, pull_request]
-
-# jobs:
-#   call-shared-workflow:
-#     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
-
-#   push-to-main-production:
-#     needs: call-shared-workflow
-#     if: success()
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v2
-
-#       - name: Push to Main-Production
-#         run: |
-#           git checkout -b main-production
-#           git push origin main-production
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.PAT_MAX }}
 name: Use Shared Ansible Lint Workflow
 
 on: [push, pull_request]
 
 jobs:
   call-shared-workflow:
-    uses: XXXX/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
     with:
       repository: ${{ github.repository }}
   
