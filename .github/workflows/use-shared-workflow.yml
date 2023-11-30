@@ -23,5 +23,5 @@ jobs:
         git checkout -b main-production
         git config user.name "mypipelienname"
         git config user.email "test@mail.com"
-        git push https://${{ secrets.PAT_MAX }}@github.com/XXX/tst-repo1.git main-production
+        git push https://${{ secrets.PAT_MAX }}@github.com/AdrienMS-Cap/tst-repo1.git main-production
 
