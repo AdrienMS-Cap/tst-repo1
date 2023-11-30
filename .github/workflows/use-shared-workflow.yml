@@ -7,7 +7,7 @@ jobs:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
     with:
       repository: ${{ github.repository }}
-      token: ${{ secrets.MY_PAT }} # or your PAT if necessary
+      token: ${{ secrets.PAT_MAX }} # or your PAT if necessary
 
   push-to-production:
     runs-on: ubuntu-latest
@@ -22,4 +22,4 @@ jobs:
     - name: Push to Main-Production
       run: |
         git checkout -b main-production
-        git push https://${{ secrets.MY_PAT }}@github.com/${{ github.repository }}/main-production
+        git push https://${{ secrets.PAT_MAX }}@github.com/${{ github.repository }}/main-production
