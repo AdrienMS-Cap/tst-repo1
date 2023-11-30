@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   call-shared-workflow:
-    uses: XXXX/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
     secrets: inherit
     with:
       repository: ${{ github.repository }}
