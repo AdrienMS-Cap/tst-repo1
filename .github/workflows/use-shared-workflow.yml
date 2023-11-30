@@ -23,3 +23,30 @@ jobs:
       run: |
         git checkout -b main-production
         git push https://${{ secrets.PAT_MAX }}@github.com/${{ github.repository }}/main-production
+name: Use Shared Ansible Lint Workflow
+
+on: [push, pull_request]
+
+jobs:
+  call-shared-workflow:
+    uses: XXXX/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
+    secrets: inherit
+    with:
+      repository: ${{ github.repository }}
+
+  push-to-production:
+    runs-on: ubuntu-latest
+    needs: [call-shared-workflow]
+    if: ${{ needs.call-shared-workflow.result == 'success' }}
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+      with:
+        ref: main
+    - name: Push to Main-Production
+      run: |
+        git checkout -b main-production
+        git config user.name "mypipelienname"
+        git config user.email "test@mail.com"
+        git push https://${{ secrets.PAT_MAX }}@github.com/${{ github.repository }}/main-production
+
