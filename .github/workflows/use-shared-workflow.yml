@@ -22,8 +22,14 @@ jobs:
 
       - name: Merge Triggering Branch
         run: |
-          git fetch origin ${{ github.head_ref }}
-          git merge origin/${{ github.head_ref }} --no-ff --no-commit
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            BRANCH=${{ github.head_ref }}
+          else
+            BRANCH=${GITHUB_REF#refs/heads/}
+          fi
+          git fetch origin
+          git merge origin/$BRANCH --no-ff --no-commit
+
 
       - name: Push to Main-Production
         run: |
