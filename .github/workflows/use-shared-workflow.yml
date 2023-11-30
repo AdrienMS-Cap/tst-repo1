@@ -1,7 +1,8 @@
 name: Use Shared Ansible Lint Workflow
 
 on: [push, pull_request]
-
+permissions:
+  contents: write
 jobs:
   call-shared-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
@@ -15,13 +16,12 @@ jobs:
     if: ${{ needs.call-shared-workflow.result == 'success' }}
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v2
-      with:
-        ref: main
+      uses: actions/checkout@v3
     - name: Push to Main-Production
       run: |
         git checkout -b main-production
         git config user.name "mypipelienname"
         git config user.email "test@mail.com"
-        git push https://${{ secrets.PAT_MAX }}@github.com/AdrienMS-Cap/tst-repo1.git main-production
+        git commit -am "Automated report"
+        git push        
 
