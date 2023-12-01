@@ -1,4 +1,4 @@
-name: Use Shared Ansible Lint Workflow
+name: Call Shared Ansible Lint Workflow
 
 on: [push, pull_request]
 permissions:
@@ -30,7 +30,7 @@ jobs:
           git config user.name "piptest"
           git config user.email "emailpi@mail.com"          
           git fetch origin
-          git merge origin/$BRANCH --no-ff --no-commit
+          git merge origin/$BRANCH --no-ff --no-commit -X theirs --allow-unrelated-histories
 
 
       - name: Push to Main-Production
@@ -38,7 +38,7 @@ jobs:
           git config user.name "piptest"
           git config user.email "emailpi@mail.com"
           git commit -m "Merged branch ${{ github.head_ref }} into main-production"
-          git push https://${{ secrets.PAT_MAX }}@github.com/AdrienMS-Cap/tst-repo1.git main-production
+          git push https://${{ github.token }}@github.com/AdrienMS-Cap/tst-repo1.git main-production
 
 
 
