@@ -1,6 +1,6 @@
 name: Call Shared Ansible Lint Workflow
 
-on: [push, pull_request]
+on: [push]
 permissions:
   contents: write
 jobs:
