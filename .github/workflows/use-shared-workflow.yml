@@ -6,6 +6,8 @@ permissions:
 jobs:
   call-shared-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
+    with:
+      repository: ${{ github.repository }}    
   push-to-branch--main-production:
       runs-on: ubuntu-latest
       needs: [call-shared-workflow]
