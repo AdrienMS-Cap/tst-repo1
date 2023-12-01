@@ -30,7 +30,7 @@ jobs:
           git config user.name "piptest"
           git config user.email "emailpi@mail.com"          
           git fetch origin
-          git merge origin/$BRANCH --no-ff --no-commit --allow-unrelated-histories
+          git merge origin/$BRANCH --no-ff --no-commit -X theirs --allow-unrelated-histories
 
 
       - name: Push to Main-Production
