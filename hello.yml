@@ -2,6 +2,6 @@
 - name: Hello World Example
   hosts: localhost
   tasks:
-    - name: Print Hello World with Current Time
-      hello_world:
-        msg: "Hello world, it's me"
+    - name: Print Hello World
+      ansible.builtin.debug:
+        msg: "Hello world, it's meee"
