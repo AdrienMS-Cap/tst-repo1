@@ -1,52 +1,12 @@
 name: Call Shared Ansible Lint Workflow
 
 on: [push]
+
 permissions:
   contents: write
+
 jobs:
   call-shared-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
     with:
-      repository: ${{ github.repository }}    
-  push-to-branch--main-production:
-      runs-on: ubuntu-latest
-      needs: [call-shared-workflow]
-      if: ${{ needs.call-shared-workflow.result == 'success' }}
-      steps:
-      - name: Checkout Main-Production Branch
-        uses: actions/checkout@v2
-        with:
-          ref: main-production
-          token: ${{ github.token }}
-
-      - name: Merge Triggering Branch
-        run: |
-          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
-            BRANCH=${{ github.head_ref }}
-          else
-            BRANCH=${GITHUB_REF#refs/heads/}
-          fi
-          git config user.name "piptest"
-          git config user.email "emailpi@mail.com"          
-          git fetch origin
-          git merge origin/$BRANCH --no-ff --no-commit -X theirs --allow-unrelated-histories
-
-
-      - name: Push to Main-Production
-        run: |
-          git config user.name "piptest"
-          git config user.email "emailpi@mail.com"
-          git commit -m "Merged branch ${{ github.head_ref }} into main-production"
-          git push https://${{ github.token }}@github.com/AdrienMS-Cap/tst-repo1.git main-production
-
-
-
-# name: Use Shared Ansible Lint Workflow
-
-# on:
-#   push:
-#     branches-ignore:
-#       - main-production
-#   pull_request:
-#     branches:
-#       - main
+      repository: ${{ github.repository }}
