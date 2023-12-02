@@ -5,4 +5,3 @@
     - name: Print Hello World with Current Time
       hello_world:
         msg: "Hello world, it's me"
-        current_time: "{{ lookup('pipe', 'date +%Y/%m/%d -- %H:%M:%S') }}"
