@@ -10,3 +10,4 @@ jobs:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/ansible-lint.yml@main
     with:
       repository: ${{ github.repository }}
+      branch: ${{ github.ref_name }} 
