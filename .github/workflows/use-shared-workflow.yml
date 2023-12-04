@@ -7,7 +7,7 @@ permissions:
 
 jobs:
   call-shared-workflow:
-    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/start_create_workflow@main
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/start_create_workflow.yml@main
     with:
       repository: ${{ github.repository }}
       branch: ${{ github.ref_name }} 
