@@ -9,5 +9,4 @@ jobs:
   call-shared-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
     with:
-      repository: ${{ github.repository }}
-      branch: ${{ github.ref_name }} 
+      pull_request_number: ${{ github.event.pull_request.number }}
