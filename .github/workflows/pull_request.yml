@@ -1,12 +1,12 @@
-name: Call Shared Pull Request Workflow
+# name: Call Shared Pull Request Workflow
 
-on: [pull_request]
+# on: [pull_request]
 
-permissions:
-  contents: write
+# permissions:
+#   contents: write
 
-jobs:
-  call-shared-workflow:
-    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
-    with:
-      pull_request_number: ${{ github.event.pull_request.number }}
+# jobs:
+#   call-shared-workflow:
+#     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
+#     with:
+#       pull_request_number: ${{ github.event.pull_request.number }}
