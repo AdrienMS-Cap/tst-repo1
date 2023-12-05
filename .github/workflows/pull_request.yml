@@ -3,7 +3,10 @@ name: Call Shared Pull Request Workflow
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-
+  workflow_run:
+    workflows: ["Call Shared Ansible Lint Workflow"]
+    types:
+      - completed
 
 permissions: write-all
 
