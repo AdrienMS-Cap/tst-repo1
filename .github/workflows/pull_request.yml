@@ -12,4 +12,5 @@ jobs:
   call-approve-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/approve.yml@main
     with:
+      repository: ${{ github.repository }}
       pull_request_number: ${{ github.event.pull_request.number }}
