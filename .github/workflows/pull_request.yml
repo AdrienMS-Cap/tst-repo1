@@ -1,0 +1,15 @@
+name: Call Shared Pull Request Workflow
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+
+permissions: write-all
+
+jobs:
+  call-approve-workflow:
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
+    with:
+      repository: ${{ github.repository }}
+      pull_request_number: ${{ github.event.pull_request.number }}
