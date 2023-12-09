@@ -4,6 +4,8 @@ on:
   push:
   pull_request:
 
+permissions: write-all
+
 jobs:
   call-shared-workflow:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
