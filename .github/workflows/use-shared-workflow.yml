@@ -12,9 +12,11 @@ jobs:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
     with:
       repository: ${{ github.repository }}
-      branch: ${{ github.ref_name }} 
+      branch: ${{ github.ref_name }}
+
   call-approve-workflow:
-    needs: [call-shared-workflow]
+    if: github.event_name == 'pull_request'
+    needs: call-shared-workflow
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
     with:
       repository: ${{ github.repository }}
