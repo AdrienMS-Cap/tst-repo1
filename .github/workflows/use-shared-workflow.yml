@@ -14,9 +14,6 @@ jobs:
 
   call-pr-workflow:
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call PR Workflow
-        uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/pr_workflow.yml@main
-        with:
-          github-token: ${{ github.token }} # replace with your GitHub token
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/pr_workflow.yml@main
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
