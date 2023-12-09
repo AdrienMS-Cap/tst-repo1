@@ -5,10 +5,3 @@
     - name: Print Hello World
       ansible.builtin.debug:
         msg: "Hello world, it's me in feature 9 and i'm doing changes. Change1 Should  pass"
-
-
-
-
-
-
-
