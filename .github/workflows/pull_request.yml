@@ -1,27 +1,77 @@
-name: Call Shared Workflow and Merge PR
+# # name: Call Shared Workflow and Merge PR
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+# # on:
+# #   pull_request:
+# #     types: [opened, reopened, synchronize]
 
-permissions: write-all
+# # permissions: write-all
 
-jobs:
-  call-shared-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call Shared Workflow
-        uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
-        with:
-          repository: ${{ github.repository }}
-          branch: ${{ github.ref_name }}
+# # jobs:
+# #   call-shared-workflow:
+# #     runs-on: ubuntu-latest
+# #     steps:
+# #       - name: Call Shared Workflow
+# #         uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
+# #         with:
+# #           repository: ${{ github.repository }}
+# #           branch: ${{ github.ref_name }}
 
-  auto-merge:
-    needs: call-shared-workflow
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge Pull Request
-        run: |
-          gh pr merge ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --squash
-        env:
-          GH_TOKEN: ${{ github.token }}
+# #   auto-merge:
+# #     needs: call-shared-workflow
+# #     runs-on: ubuntu-latest
+# #     steps:
+# #       - name: Merge Pull Request
+# #         run: |
+# #           gh pr merge ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --squash
+# #         env:
+# #           GH_TOKEN: ${{ github.token }}
+# name: PR Workflow
+
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+
+# permissions: write-all
+
+# jobs:
+#   call-shared-workflow:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#         - name: Call Shared Workflow
+#         uses: XXXX/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
+#         with:
+#           repository: ${{ github.repository }}
+#           branch: ${{ github.head_ref }}
+
+#   merge-on-success:
+#     needs: call-shared-workflow
+#     runs-on: ubuntu-latest
+#     if: ${{ success() }}
+#     steps:
+#       - name: Merge PR
+#         uses: actions/github-script@v5
+#         with:
+#           script: |
+#             github.rest.pulls.update({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               pull_number: context.issue.number,
+#               state: "closed"
+#             })
+
+#   close-on-failure:
+#     needs: call-shared-workflow
+#     runs-on: ubuntu-latest
+#     if: ${{ failure() }}
+#     steps:
+#       - name: Close PR
+#         uses: actions/github-script@v5
+#         with:
+#           script: |
+#             github.rest.pulls.update({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               pull_number: context.issue.number,
+#               state: "closed"
+#             })

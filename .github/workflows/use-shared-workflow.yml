@@ -1,20 +1,22 @@
 name: Call Shared Workflow
 
-on:
+on: 
   push:
-permissions: write-all
+  pull_request:
 
 jobs:
   call-shared-workflow:
-    uses: XXXX/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
+    if: github.event_name == 'push'
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
     with:
       repository: ${{ github.repository }}
       branch: ${{ github.ref_name }}
 
-  # call-approve-workflow:
-  #   if: github.event_name == 'pull_request'
-  #   needs: call-shared-workflow
-  #   uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
-  #   with:
-  #     repository: ${{ github.repository }}
-  #     pull_request_number: ${{ github.event.pull_request.number }}
+  call-pr-workflow:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call PR Workflow
+        uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/pr_workflow.yml@main
+        with:
+          github-token: ${{ github.token }} # replace with your GitHub token
