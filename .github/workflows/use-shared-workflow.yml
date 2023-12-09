@@ -12,8 +12,3 @@ jobs:
       repository: ${{ github.repository }}
       branch: ${{ github.ref_name }}
 
-  call-pr-workflow:
-    if: github.event_name == 'pull_request'
-    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/pr_workflow.yml@main
-    with:
-      github-token: ${{ github.token }}
