@@ -8,7 +8,7 @@ permissions: write-all
 
 jobs:
   call-shared-workflow:
-    uses: XXXX/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
+    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
     with:
       repository: ${{ github.repository }}
       branch: ${{ github.event.ref }}
