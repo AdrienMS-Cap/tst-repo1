@@ -1,9 +1,8 @@
 name: Call Shared Workflow
 
-on:
+on: 
   push:
   pull_request:
-    types: [opened, reopened, synchronize]
 
 permissions: write-all
 
@@ -12,12 +11,5 @@ jobs:
     uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/create_workflow.yml@main
     with:
       repository: ${{ github.repository }}
-      branch: ${{ github.ref_name }}
+      branch: ${{ github.event.ref }}
 
-  call-approve-workflow:
-    if: github.event_name == 'pull_request'
-    needs: call-shared-workflow
-    uses: AdrienMS-Cap/tst-shared-pipeline/.github/workflows/auto_merge.yml@main
-    with:
-      repository: ${{ github.repository }}
-      pull_request_number: ${{ github.event.pull_request.number }}
