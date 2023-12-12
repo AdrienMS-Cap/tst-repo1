@@ -4,7 +4,8 @@
   tasks:
     - name: Print Hello World
       ansible.builtin.debug:
-        msg: "Hello world, it's me in feaature 15 and i'm doing changes. Change1 Should NOT pass please !"
+        msg: "Hello world, it's me in feaature 15 and i'm doing changes. Change1 Should pass please !!"
+
 
 
 
